@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center_vertical"
+    android:layout_marginBottom="@dimen/activity_margin"
+    android:layout_marginEnd="@dimen/activity_margin"
+    android:layout_marginStart="@dimen/activity_margin"
+    android:layout_marginTop="@dimen/activity_margin"
+    android:background="@color/colorWhite"
+    tools:context=".MainActivity"><!--TODO M remove and update per style guide-->
+  <!-- TODO 2-->
+  <TextView
+      android:id="@+id/billLabelTxtView"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:gravity="start"
+      android:padding="@dimen/view_padding"
+      android:text="@string/bill_label"
+      android:textAppearance="@style/TextAppearance.AppCompat.Large"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent" />
+
+  <TextView
+      android:id="@+id/tipLabelTxtView"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:padding="@dimen/view_padding"
+      android:text="@string/tip_label"
+      android:textAppearance="@style/TextAppearance.AppCompat.Large"
+      app:layout_constraintStart_toStartOf="@+id/billTextInputLayout"
+      app:layout_constraintTop_toBottomOf="@+id/billTextInputLayout" />
+
+  <androidx.cardview.widget.CardView
+      android:layout_width="0dp"
+      android:layout_height="250dp"
+      android:layout_margin="@dimen/view_margin"
+      android:orientation="vertical"
+      app:cardBackgroundColor="@color/colorAccent"
+      app:cardCornerRadius="16dp"
+      app:cardElevation="0dp"
+      app:layout_constraintDimensionRatio="1:1"
+      app:layout_constraintEnd_toEndOf="@+id/tipTextInputLayout"
+      app:layout_constraintStart_toStartOf="@+id/tipTextInputLayout"
+      app:layout_constraintTop_toBottomOf="@+id/tipTextInputLayout">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+      <TextView
+          android:id="@+id/tipAmountLabelTextView"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:gravity="center"
+          android:padding="@dimen/view_padding"
+          android:text="@string/tip_amount_label"
+          android:textSize="24sp"
+          android:textStyle="bold"
+          android:textAppearance="@style/TextAppearance.AppCompat.Large"
+          android:textColor="@color/colorGray300" />
+
+      <TextView
+          android:id="@+id/tipAmountTextview"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:gravity="center"
+          android:paddingBottom="@dimen/view_padding"
+          android:paddingEnd="@dimen/view_padding"
+          android:paddingStart="@dimen/view_padding"
+          android:paddingTop="4dp"
+          android:textAppearance="@style/TextAppearance.AppCompat.Large"
+          android:textColor="@color/colorGray300"
+          android:textSize="32sp"
+          android:textStyle="bold"
+          android:text="$ 0"
+          tools:text="$ 0" />
+
+      <TextView
+          android:id="@+id/totalAmountLabelTextView"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:gravity="center"
+          android:padding="@dimen/view_padding"
+          android:text="@string/total_amount_label"
+          android:textAppearance="@style/TextAppearance.AppCompat.Large"
+          android:textColor="@color/colorGray200"
+          android:textSize="30sp"
+          android:textStyle="bold" />
+
+      <TextView
+          android:id="@+id/totalAmountTextview"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:gravity="center"
+          android:padding="@dimen/view_padding"
+          android:textAppearance="@style/TextAppearance.AppCompat.Large"
+          android:textColor="@color/colorGray200"
+          android:textSize="40sp"
+          android:textStyle="bold"
+          tools:text="$ 0"
+          android:text="$ 0"/>
+
+    </LinearLayout>
+
+  </androidx.cardview.widget.CardView>
+
+  <com.google.android.material.textfield.TextInputLayout
+      android:id="@+id/billTextInputLayout"
+      style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:padding="@dimen/view_padding"
+      app:boxCornerRadiusBottomEnd="@dimen/til_corner_radius"
+      app:boxCornerRadiusBottomStart="@dimen/til_corner_radius"
+      app:boxCornerRadiusTopEnd="@dimen/til_corner_radius"
+      app:boxCornerRadiusTopStart="@dimen/til_corner_radius"
+      app:layout_constraintStart_toStartOf="@+id/billLabelTxtView"
+      app:layout_constraintTop_toBottomOf="@+id/billLabelTxtView">
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/billInputField"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="number" />
+  </com.google.android.material.textfield.TextInputLayout>
+
+  <com.google.android.material.textfield.TextInputLayout
+      android:id="@+id/tipTextInputLayout"
+      style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:padding="@dimen/view_padding"
+      app:boxCornerRadiusBottomEnd="@dimen/til_corner_radius"
+      app:boxCornerRadiusBottomStart="@dimen/til_corner_radius"
+      app:boxCornerRadiusTopEnd="@dimen/til_corner_radius"
+      app:boxCornerRadiusTopStart="@dimen/til_corner_radius"
+      app:layout_constraintStart_toStartOf="@+id/tipLabelTxtView"
+      app:layout_constraintTop_toBottomOf="@+id/tipLabelTxtView">
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/tipInputField"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="number" />
+  </com.google.android.material.textfield.TextInputLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
