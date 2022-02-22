@@ -73,7 +73,7 @@ Thumbs.db
 *.ipr
 *.iws
 /.idea/*
-
+.idea
 # IDEA/Android Studio Ignore exceptions
 !/.idea/vcs.xml
 !/.idea/fileTemplates/
