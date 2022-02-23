@@ -10,8 +10,7 @@
     android:layout_marginStart="@dimen/activity_margin"
     android:layout_marginTop="@dimen/activity_margin"
     android:background="@color/colorWhite"
-    tools:context=".MainActivity"><!--TODO M remove and update per style guide-->
-  <!-- TODO 2-->
+    tools:context=".MainActivity">
   <TextView
       android:id="@+id/billLabelTxtView"
       android:layout_width="match_parent"
@@ -40,7 +39,7 @@
       android:orientation="vertical"
       app:cardBackgroundColor="@color/colorAccent"
       app:cardCornerRadius="16dp"
-      app:cardElevation="0dp"
+      app:cardElevation="-4dp"
       app:layout_constraintDimensionRatio="1:1"
       app:layout_constraintEnd_toEndOf="@+id/tipTextInputLayout"
       app:layout_constraintStart_toStartOf="@+id/tipTextInputLayout"
@@ -125,7 +124,9 @@
         android:id="@+id/billInputField"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="number" />
+        android:inputType="numberDecimal"
+        android:focusable="true"
+        android:clickable="true"/>
   </com.google.android.material.textfield.TextInputLayout>
 
   <com.google.android.material.textfield.TextInputLayout
@@ -145,7 +146,7 @@
         android:id="@+id/tipInputField"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="number" />
+        android:inputType="numberDecimal" />
   </com.google.android.material.textfield.TextInputLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

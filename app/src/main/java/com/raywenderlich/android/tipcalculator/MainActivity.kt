@@ -35,19 +35,108 @@
 package com.raywenderlich.android.tipcalculator
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import android.util.Log
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.textfield.TextInputEditText
+import com.raywenderlich.android.tipcalculator.databinding.ActivityMainBinding
 
+/**
+ * <!--TODO M remove and update per style guide-->
+<!-- TODO 2-->
+ */
 
 class MainActivity : AppCompatActivity() {
+
+  private lateinit var binding: ActivityMainBinding
+  private val calculatorViewModel: CalculatorViewModel by viewModels()
 
   override fun onCreate(savedInstanceState: Bundle?) {
     setTheme(R.style.AppTheme)
 
     super.onCreate(savedInstanceState)
-    setContentView(R.layout.activity_main)
+    binding = ActivityMainBinding.inflate(layoutInflater)
+    val view = binding.root
+    setContentView(view)
 
     // Your code
+    setInitialValues()
+    // Listen to changes in bill textview
+    listenToBillChanges()
+    // listen to changes in tip textview
+    listenToTipChanges()
+    // Update text according
+    observeTotalAmount()
+    observerTipAmount()
+  }
 
+  fun setInitialValues(){
+    binding.billInputField.setText("${calculatorViewModel.bill}")
+//    setText(calculatorViewModel.bill)
+    binding.tipInputField.setText("${calculatorViewModel.tipPercentage}")
+//    setText(calculatorViewModel.tipPercentage)
+
+  }
+
+  fun listenToBillChanges() {
+    binding.billInputField.addTextChangedListener(object : TextWatcher {
+      override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+      }
+
+      override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+      }
+
+      override fun afterTextChanged(input: Editable?) {
+        Log.d("BILL", "bill okyaaaa")
+        val newBill = input.toString()
+        if (!newBill.isNullOrEmpty()){
+          Log.d("BILL", "bill $newBill")
+          calculatorViewModel.bill = newBill.toInt()
+          calculatorViewModel.calculateTip()
+          calculatorViewModel.calculateTotalBill()
+        }
+      }
+    })
+  }
+
+  fun listenToTipChanges(){
+    binding.tipInputField.addTextChangedListener(object: TextWatcher{
+      override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+      }
+
+      override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+        Log.d("BILL", "tip $p0")
+      }
+
+      override fun afterTextChanged(input: Editable?) {
+        val newTip = input.toString()
+        Log.d("BILL", "tip $newTip")
+        if (!newTip.isNullOrEmpty()){
+          calculatorViewModel.tipPercentage = newTip.toInt()
+          calculatorViewModel.calculateTip()
+          calculatorViewModel.calculateTotalBill()
+        }
+      }
+    })
+  }
+
+  fun observerTipAmount(){
+    calculatorViewModel.tipAmount.observe(this){tipAmount ->
+      Log.d("BILL", "tip gotten $tipAmount")
+      binding.tipAmountTextview.text = "$${tipAmount}"
+
+    }
+
+  }
+
+  fun observeTotalAmount(){
+    calculatorViewModel.totalAmount.observe(this){ totalAmount ->
+      Log.d("BILL", "tip $totalAmount")
+      binding.totalAmountTextview.text = "$${totalAmount}"
+    }
 
   }
 }
