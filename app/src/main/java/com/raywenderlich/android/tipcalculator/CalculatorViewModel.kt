@@ -39,26 +39,23 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-// TODO 3: Config changes
-// Finish on this. Clean up
-// Create the starter project
-//
-class CalculatorViewModel() : ViewModel() {
-  var tipPercentage = 15
-  var bill = 0
 
+// TODO 6: Create a ViewModel
+class CalculatorViewModel : ViewModel() {
+  //TODO 7: Adding Livedata[Get a better name]
   private val newTipAmount = MutableLiveData<Double>()
   val tipAmount: LiveData<Double> get() = newTipAmount
 
   private val amount = MutableLiveData<Double>()
   val totalAmount: LiveData<Double> get() = amount
 
+  var tipPercentage = 15
+  var bill = 0
 
+  // TODO 8: Update tip Livedata
   fun calculateTip() {
-    Log.d("BILL", "new Bill $bill")
     val newTip = bill * (tipPercentage.toDouble()/100)
     newTipAmount.value = newTip// TODO: Fix the decimals to two places
-    Log.d("BILL", "new Bill ${newTipAmount}")
   }
 
   fun calculateTotalBill() {

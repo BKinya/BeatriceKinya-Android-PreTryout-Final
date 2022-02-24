@@ -33,8 +33,9 @@
   -->
 
 <resources>
-  <dimen name="activity_margin">24dp</dimen>
+  <dimen name="activity_margin_horizontal">32dp</dimen>
   <dimen name="til_corner_radius">28dp</dimen>
   <dimen name="view_padding">8dp</dimen>
   <dimen name="view_margin">24dp</dimen>
+  <dimen name="activity_margin_vertical">16dp</dimen>
 </resources>

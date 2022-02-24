@@ -5,16 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center_vertical"
-    android:layout_marginBottom="@dimen/activity_margin"
-    android:layout_marginEnd="@dimen/activity_margin"
-    android:layout_marginStart="@dimen/activity_margin"
-    android:layout_marginTop="@dimen/activity_margin"
-    android:background="@color/colorWhite"
     tools:context=".MainActivity">
+  <!--TODO 2: Add views -->
   <TextView
       android:id="@+id/billLabelTxtView"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
+      android:layout_marginEnd="@dimen/activity_margin_horizontal"
+      android:layout_marginStart="@dimen/activity_margin_horizontal"
+      android:layout_marginTop="@dimen/activity_margin_vertical"
       android:gravity="start"
       android:padding="@dimen/view_padding"
       android:text="@string/bill_label"
@@ -24,11 +23,12 @@
 
   <TextView
       android:id="@+id/tipLabelTxtView"
-      android:layout_width="match_parent"
+      android:layout_width="0dp"
       android:layout_height="wrap_content"
       android:padding="@dimen/view_padding"
       android:text="@string/tip_label"
       android:textAppearance="@style/TextAppearance.AppCompat.Large"
+      app:layout_constraintEnd_toEndOf="@id/billTextInputLayout"
       app:layout_constraintStart_toStartOf="@+id/billTextInputLayout"
       app:layout_constraintTop_toBottomOf="@+id/billTextInputLayout" />
 
@@ -57,10 +57,10 @@
           android:gravity="center"
           android:padding="@dimen/view_padding"
           android:text="@string/tip_amount_label"
-          android:textSize="24sp"
-          android:textStyle="bold"
           android:textAppearance="@style/TextAppearance.AppCompat.Large"
-          android:textColor="@color/colorGray300" />
+          android:textColor="@color/colorGray300"
+          android:textSize="24sp"
+          android:textStyle="bold" />
 
       <TextView
           android:id="@+id/tipAmountTextview"
@@ -71,11 +71,11 @@
           android:paddingEnd="@dimen/view_padding"
           android:paddingStart="@dimen/view_padding"
           android:paddingTop="4dp"
+          android:text="$ 0"
           android:textAppearance="@style/TextAppearance.AppCompat.Large"
           android:textColor="@color/colorGray300"
           android:textSize="32sp"
           android:textStyle="bold"
-          android:text="$ 0"
           tools:text="$ 0" />
 
       <TextView
@@ -96,12 +96,12 @@
           android:layout_height="wrap_content"
           android:gravity="center"
           android:padding="@dimen/view_padding"
+          android:text="$ 0"
           android:textAppearance="@style/TextAppearance.AppCompat.Large"
           android:textColor="@color/colorGray200"
           android:textSize="40sp"
           android:textStyle="bold"
-          tools:text="$ 0"
-          android:text="$ 0"/>
+          tools:text="$ 0" />
 
     </LinearLayout>
 
@@ -110,13 +110,14 @@
   <com.google.android.material.textfield.TextInputLayout
       android:id="@+id/billTextInputLayout"
       style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-      android:layout_width="match_parent"
+      android:layout_width="0dp"
       android:layout_height="wrap_content"
-      android:padding="@dimen/view_padding"
+      android:paddingBottom="@dimen/view_padding"
       app:boxCornerRadiusBottomEnd="@dimen/til_corner_radius"
       app:boxCornerRadiusBottomStart="@dimen/til_corner_radius"
       app:boxCornerRadiusTopEnd="@dimen/til_corner_radius"
       app:boxCornerRadiusTopStart="@dimen/til_corner_radius"
+      app:layout_constraintEnd_toEndOf="@+id/billLabelTxtView"
       app:layout_constraintStart_toStartOf="@+id/billLabelTxtView"
       app:layout_constraintTop_toBottomOf="@+id/billLabelTxtView">
 
@@ -124,21 +125,21 @@
         android:id="@+id/billInputField"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="numberDecimal"
+        android:clickable="true"
         android:focusable="true"
-        android:clickable="true"/>
+        android:inputType="numberDecimal" />
   </com.google.android.material.textfield.TextInputLayout>
 
   <com.google.android.material.textfield.TextInputLayout
       android:id="@+id/tipTextInputLayout"
       style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-      android:layout_width="match_parent"
+      android:layout_width="0dp"
       android:layout_height="wrap_content"
-      android:padding="@dimen/view_padding"
       app:boxCornerRadiusBottomEnd="@dimen/til_corner_radius"
       app:boxCornerRadiusBottomStart="@dimen/til_corner_radius"
       app:boxCornerRadiusTopEnd="@dimen/til_corner_radius"
       app:boxCornerRadiusTopStart="@dimen/til_corner_radius"
+      app:layout_constraintEnd_toEndOf="@+id/tipLabelTxtView"
       app:layout_constraintStart_toStartOf="@+id/tipLabelTxtView"
       app:layout_constraintTop_toBottomOf="@+id/tipLabelTxtView">
 
