@@ -44,24 +44,26 @@ import com.raywenderlich.android.tipcalculator.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
-  // TODO 3: Add ViewBinding
   private lateinit var binding: ActivityMainBinding
-  // TODO 9: get instance of ViewModel
   private val calculatorViewModel: CalculatorViewModel by viewModels()
-
+  private var bill = 0
+  private var tipPercentage = 15
   private val tag = "MAIN_ACTIVITY"
 
   override fun onCreate(savedInstanceState: Bundle?) {
     setTheme(R.style.AppTheme)
 
     super.onCreate(savedInstanceState)
-    Log.d(tag, "CREATED")
     binding = ActivityMainBinding.inflate(layoutInflater)
     val view = binding.root
     setContentView(view)
+
+    Log.d(tag, "CREATED")
+    setDefaultValues()
+    observeTipAmount()
+    observeTotalAmount()
   }
 
-  // TODO 1: Add LifeCycle callbacks
   override fun onStart() {
     super.onStart()
     Log.d(tag, "STARTED")
@@ -70,11 +72,8 @@ class MainActivity : AppCompatActivity() {
   override fun onResume() {
     super.onResume()
     Log.d(tag, "RESUMED")
-    setInitialValues()
-    listenToBillChanges()
     listenToTipChanges()
-    observeTotalAmount()
-    observerTipAmount()
+    listenToBillChanges()
   }
 
   override fun onPause() {
@@ -92,13 +91,11 @@ class MainActivity : AppCompatActivity() {
     Log.d(tag, "DESTROYED")
   }
 
-  //TODO 4: Set initial values
-  private fun setInitialValues() {
-    binding.billInputField.setText("${calculatorViewModel.bill}")
-    binding.tipInputField.setText("${calculatorViewModel.tipPercentage}")
+  private fun setDefaultValues() {
+    binding.billInputField.setText("$bill")
+    binding.tipInputField.setText("$tipPercentage")
   }
 
-  // TODO 5: Add text changed listeners
   private fun listenToBillChanges() {
     binding.billInputField.addTextChangedListener(object : TextWatcher {
       override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
@@ -107,12 +104,12 @@ class MainActivity : AppCompatActivity() {
 
       override fun afterTextChanged(input: Editable?) {
         val newBill = input.toString()
-        // Log before creating a view model
-        // TODO 10: Call ViewModel methods to update bill and Tip
-        if (newBill.isNotEmpty()) { // 1
-          calculatorViewModel.bill = newBill.toInt() // 2
-          calculatorViewModel.calculateTip() // 3
-          calculatorViewModel.calculateTotalBill()// 4
+        if (newBill.isNotBlank()) {
+          bill = newBill.toInt()
+          Log.d(tag, "Bill $bill")
+          calculatorViewModel.bill = newBill.toInt()
+          calculatorViewModel.calculateTip()
+          calculatorViewModel.calculateTotalBill()
         }
       }
     })
@@ -126,7 +123,9 @@ class MainActivity : AppCompatActivity() {
 
       override fun afterTextChanged(input: Editable?) {
         val newTip = input.toString()
-        if (newTip.isNotEmpty()) {
+        if (newTip.isNotBlank()) {
+          tipPercentage = input.toString().toInt()
+          Log.d(tag, "New Tip $tipPercentage")
           calculatorViewModel.tipPercentage = newTip.toInt()
           calculatorViewModel.calculateTip()
           calculatorViewModel.calculateTotalBill()
@@ -135,8 +134,7 @@ class MainActivity : AppCompatActivity() {
     })
   }
 
-  // TODO 11: Observe changes on tip and total amount
-  private fun observerTipAmount() {
+  private fun observeTipAmount() {
     calculatorViewModel.tipAmount.observe(this) { tipAmount ->
       binding.tipAmountTextview.text = "$${tipAmount}"
     }
@@ -147,5 +145,4 @@ class MainActivity : AppCompatActivity() {
       binding.totalAmountTextview.text = "$${totalAmount}"
     }
   }
-
 }

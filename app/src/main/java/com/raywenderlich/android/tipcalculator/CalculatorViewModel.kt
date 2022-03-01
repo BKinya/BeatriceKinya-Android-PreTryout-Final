@@ -34,33 +34,26 @@
 
 package com.raywenderlich.android.tipcalculator
 
-import android.util.Log
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import kotlin.math.roundToInt
 
-
-// TODO 6: Create a ViewModel
 class CalculatorViewModel : ViewModel() {
-  //TODO 7: Adding Livedata[Get a better name]
-  private val newTipAmount = MutableLiveData<Double>()
-  val tipAmount: LiveData<Double> get() = newTipAmount
-
-  private val amount = MutableLiveData<Double>()
-  val totalAmount: LiveData<Double> get() = amount
 
   var tipPercentage = 15
   var bill = 0
+  val tipAmount = MutableLiveData(0.00)
+  val totalAmount = MutableLiveData(0.00)
 
-  // TODO 8: Update tip Livedata
   fun calculateTip() {
-    val newTip = bill * (tipPercentage.toDouble()/100)
-    newTipAmount.value = newTip// TODO: Fix the decimals to two places
+    val newTip = (bill * tipPercentage) / 100.0
+    tipAmount.value = newTip
   }
 
   fun calculateTotalBill() {
-    val tipAmount = newTipAmount.value
-    val newBill = bill.plus (tipAmount ?: 0.00)
-    amount.value = newBill
+    val amount = tipAmount.value
+    val newBill = bill + (amount ?: 0.00)
+    val roundOff = newBill * 100.0 / 100.0
+    totalAmount.value = roundOff
   }
 }
