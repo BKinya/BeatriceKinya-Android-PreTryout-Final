@@ -36,7 +36,6 @@ package com.raywenderlich.android.tipcalculator
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import kotlin.math.roundToInt
 
 class CalculatorViewModel : ViewModel() {
 
@@ -51,8 +50,8 @@ class CalculatorViewModel : ViewModel() {
   }
 
   fun calculateTotalBill() {
-    val amount = tipAmount.value
-    val newBill = bill + (amount ?: 0.00)
+    val latestTip = tipAmount.value
+    val newBill = bill + (latestTip ?: 0.00)
     val roundOff = newBill * 100.0 / 100.0
     totalAmount.value = roundOff
   }

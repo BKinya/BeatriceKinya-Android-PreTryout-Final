@@ -124,7 +124,7 @@ class MainActivity : AppCompatActivity() {
       override fun afterTextChanged(input: Editable?) {
         val newTip = input.toString()
         if (newTip.isNotBlank()) {
-          tipPercentage = input.toString().toInt()
+          tipPercentage = newTip.toInt()
           Log.d(tag, "New Tip $tipPercentage")
           calculatorViewModel.tipPercentage = newTip.toInt()
           calculatorViewModel.calculateTip()
