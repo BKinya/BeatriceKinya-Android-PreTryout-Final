@@ -37,9 +37,6 @@
     android:layout_margin="@dimen/view_margin"
     app:cardBackgroundColor="@color/colorAccent"
     app:cardCornerRadius="16dp"
-    app:cardElevation="0dp"
-    app:cardUseCompatPadding="true"
-    app:cardPreventCornerOverlap="false"
     app:layout_constraintEnd_toEndOf="@+id/tipTextInputLayout"
     app:layout_constraintStart_toStartOf="@+id/tipTextInputLayout"
     app:layout_constraintTop_toBottomOf="@+id/tipTextInputLayout">
@@ -124,6 +121,7 @@
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:inputType="numberDecimal" />
+
   </com.google.android.material.textfield.TextInputLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
