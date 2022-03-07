@@ -50,7 +50,6 @@ class MainActivity : AppCompatActivity() {
   private var tipPercentage = 15
   private val tag = "MainActivityLogs"
 
-
   override fun onCreate(savedInstanceState: Bundle?) {
     setTheme(R.style.AppTheme)
 
